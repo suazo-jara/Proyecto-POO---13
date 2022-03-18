@@ -1,2 +1,2 @@
-# Proyecto-POO---13
+# Proyecto-POO
 Manejo de sistema de salud
