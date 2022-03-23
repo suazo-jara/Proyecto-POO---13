@@ -4,29 +4,45 @@ import java.io.*;
 public class GestionSalud {
     
     public static void main(String[] args) throws IOException{
+        //Instanciar variables
         BufferedReader lectura = new BufferedReader (new InputStreamReader(System.in));
-        int opcion;
-        
-        //Muestra meni hasta que se elija una opcion valida
-        do{
-            menu();
-            opcion = Integer.parseInt(lectura.readLine());
-        }while(verificar(opcion) == 0);
-        
+        int opcion, capacidad = 15;
         Persona paciente=new Persona();
-        Persona sala[] = new Persona[15];
+        Persona sala[] = new Persona[capacidad];
         
         for(int i = 0; i<15;i++){
             sala[i] = new Persona();
         }
         
-        if(opcion == 1){
-            //ingresar(paciente,lectura);
-           paciente.ingresarPaciente(lectura);
-           agregarASala(paciente,sala);
-           
-           //System.out.println(sala[1].getNombre());
-        }
+        //Ciclo para mostrar menu con sus opciones
+        do{
+            opcion = 9;
+            do{
+                //Muestra menu hasta que ingrese una opcion valida
+                menu();
+                opcion = Integer.parseInt(lectura.readLine());
+            }while(verificar(opcion) == 0);
+            
+            if(opcion == 1){
+                //Se guardan los datos del paciente
+                paciente.ingresarPaciente(lectura);
+                //Agrega los pacientes a la sala
+                agregarASala(paciente,sala,capacidad);
+                //Disminuye en uno la capacidad 
+                capacidad--;
+
+            }
+            
+            //Opcion mostrar a los pacientes
+            if(opcion == 4){
+                //Si hay capacidad 15, significa que todavía no se ingresa ningun paciente
+                if(capacidad == 15){
+                    System.out.println("Todavía no se ingresa ningun paciente");
+                }
+                paciente.mostrarPacientes(sala,capacidad);
+            }
+        }while(verificar(opcion) == 1);
+        
         
     }
     
@@ -37,6 +53,7 @@ public class GestionSalud {
         System.out.println("1)Agregar paciente");
         System.out.println("2)Liberar paciente");
         System.out.println("3)Ver estado de gravedad de paciente");
+        System.out.println("4)Mostrar pacientes");
         System.out.println("0)Salir");
     }
     
@@ -45,7 +62,8 @@ public class GestionSalud {
         if(opcion == 0){
             System.exit(0);
         }
-        if(opcion == 1 || opcion == 2 || opcion == 3){
+        //Opciones validas
+        if(opcion == 1 || opcion == 2 || opcion == 3 || opcion == 4){
             return 1;
         }else{
             System.out.println("Elija una opcion valida");
@@ -53,49 +71,22 @@ public class GestionSalud {
         }
     }
     
-    public static void agregarASala(Persona paciente,Persona sala[]){
-        if(paciente.getGravedad() == 1){
-            for(int i = 0; i<5;i++){
-                if(sala[i].getGravedad() != 1){
-                    sala[i].setNombre(paciente.getNombre());
-                    sala[i].setApellido(paciente.getApellido());
-                    sala[i].setGravedad(paciente.getGravedad());
-                    sala[i].setRut(paciente.getRut());
-                    sala[i].setFecha(paciente.getFecha());
-                    
-                }else{
-                    System.out.println("Ocupado");
-                }
+    public static void agregarASala(Persona paciente,Persona sala[],int capacidad){
+        //Recorre el arreglo hasta que encuentre una posicion vacia
+        for(int i = 0; i<15;i++){
+            if(sala[i].getGravedad() == 0 ){
+                sala[i].setNombre(paciente.getNombre());
+                sala[i].setApellido(paciente.getApellido());
+                sala[i].setGravedad(paciente.getGravedad());
+                sala[i].setRut(paciente.getRut());
+                sala[i].setFecha(paciente.getFecha());
+                System.out.println("----PACIENTE AGREGADO----");
+                break;
             }
         }
-        if(paciente.getGravedad() == 2){
-            for(int i= 5; i<10;i++){
-                if(sala[i].getGravedad() != 2){
-                    sala[i].setNombre(paciente.getNombre());
-                    sala[i].setApellido(paciente.getApellido());
-                    sala[i].setGravedad(paciente.getGravedad());
-                    sala[i].setRut(paciente.getRut());
-                    sala[i].setFecha(paciente.getFecha());
-                    
-                }else{
-                    System.out.println("Ocupado");
-                }
-            }
-        }
-        if(paciente.getGravedad() == 3){
-            for(int i = 10; i<15;i++){
-                if(sala[i].getGravedad() != 3){
-                    sala[i].setNombre(paciente.getNombre());
-                    sala[i].setApellido(paciente.getApellido());
-                    sala[i].setGravedad(paciente.getGravedad());
-                    sala[i].setRut(paciente.getRut());
-                    sala[i].setFecha(paciente.getFecha());
-                    
-                }else{
-                    System.out.println("Ocupado");
-                }
-            }
+        //No quedan mas camas para agregar a pacientes
+        if(capacidad == 0){
+            System.out.println("No quedan mas camas");
         }
     }
-    
 }
