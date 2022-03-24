@@ -1,5 +1,9 @@
+/*
+ * @author Kevin Meza Toro
+ * @author José Olguín Bustamante
+ * @author Cristian Suazo Jara
+ */
 import java.io.*;
-
 
 public class GestionSalud {
     
@@ -7,11 +11,11 @@ public class GestionSalud {
         //Instanciar variables
         BufferedReader lectura = new BufferedReader (new InputStreamReader(System.in));
         int opcion, capacidad = 15;
-        Persona paciente=new Persona();
-        Persona sala[] = new Persona[capacidad];
+        Paciente paciente=new Paciente();
+        Paciente sala[] = new Paciente[capacidad];
         
         for(int i = 0; i<15;i++){
-            sala[i] = new Persona();
+            sala[i] = new Paciente();
         }
         
         //Ciclo para mostrar menu con sus opciones
@@ -50,11 +54,11 @@ public class GestionSalud {
         //Muestra menu
         System.out.println("Bienvenido al sistema de gestion de camillas");     
         System.out.println("Elija una opción:");
-        System.out.println("1)Agregar paciente");
-        System.out.println("2)Liberar paciente");
-        System.out.println("3)Ver estado de gravedad de paciente");
-        System.out.println("4)Mostrar pacientes");
-        System.out.println("0)Salir");
+        System.out.println("1) Agregar paciente");
+        System.out.println("2) Liberar paciente");
+        System.out.println("3) Ver estado de gravedad de paciente");
+        System.out.println("4) Mostrar pacientes");
+        System.out.println("0) Salir");
     }
     
     public static int verificar(int opcion){
@@ -71,7 +75,7 @@ public class GestionSalud {
         }
     }
     
-    public static void agregarASala(Persona paciente,Persona sala[],int capacidad){
+    public static void agregarASala(Paciente paciente,Paciente sala[],int capacidad){
         //Recorre el arreglo hasta que encuentre una posicion vacia
         for(int i = 0; i<15;i++){
             if(sala[i].getGravedad() == 0 ){
