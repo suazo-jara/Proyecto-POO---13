@@ -4,12 +4,16 @@
  * @author Cristian Suazo Jara
  */
 import java.io.*;
+import java.util.*;
 
 public class GestionSalud {
     
     public static void main(String[] args) throws IOException{
         //Instanciar variables
         BufferedReader lectura = new BufferedReader (new InputStreamReader(System.in));
+        ArrayList<Sala> salas;
+        
+        /*
         int opcion, capacidad = 15;
         Paciente paciente=new Paciente();
         Paciente sala[] = new Paciente[capacidad];
@@ -31,7 +35,7 @@ public class GestionSalud {
                 //Se guardan los datos del paciente
                 paciente.ingresarPaciente(lectura);
                 //Agrega los pacientes a la sala
-                agregarASala(paciente,sala,capacidad);
+                //agregarASala(paciente,sala,capacidad);
                 //Disminuye en uno la capacidad 
                 capacidad--;
 
@@ -47,7 +51,7 @@ public class GestionSalud {
             }
         }while(verificar(opcion) == 1);
         
-        
+     */   
     }
     
     public static void menu(){
@@ -74,8 +78,8 @@ public class GestionSalud {
             return 0;
         }
     }
-    
-    public static void agregarASala(Paciente paciente,Paciente sala[],int capacidad){
+    /*
+    public static void agregarASala(Paciente paciente,Paciente sala[],int capacidad){ 
         //Recorre el arreglo hasta que encuentre una posicion vacia
         for(int i = 0; i<15;i++){
             if(sala[i].getGravedad() == 0 ){
@@ -92,5 +96,5 @@ public class GestionSalud {
         if(capacidad == 0){
             System.out.println("No quedan mas camas");
         }
-    }
+    } */
 }
