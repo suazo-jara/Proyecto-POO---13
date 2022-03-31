@@ -11,17 +11,12 @@ public class GestionSalud {
     public static void main(String[] args) throws IOException{
         //Instanciar variables
         BufferedReader lectura = new BufferedReader (new InputStreamReader(System.in));
-        ArrayList<Sala> salas;
         
-        /*
-        int opcion, capacidad = 15;
+        int opcion;
         Paciente paciente=new Paciente();
-        Paciente sala[] = new Paciente[capacidad];
+        Sala sala = new Sala();
         
-        for(int i = 0; i<15;i++){
-            sala[i] = new Paciente();
-        }
-        
+        ArrayList<Sala> habitaciones = new ArrayList();        
         //Ciclo para mostrar menu con sus opciones
         do{
             opcion = 9;
@@ -33,25 +28,30 @@ public class GestionSalud {
             
             if(opcion == 1){
                 //Se guardan los datos del paciente
-                paciente.ingresarPaciente(lectura);
-                //Agrega los pacientes a la sala
-                //agregarASala(paciente,sala,capacidad);
-                //Disminuye en uno la capacidad 
-                capacidad--;
-
+                lecturaDatosPaciente(lectura,paciente);
+                sala.recolectarDatos(paciente);
+                sala.recolectarDatos(paciente.getRut());
+                if(paciente.getGravedad()==1){
+                    sala.agregarASala1();
+                    habitaciones.add(sala);
+                }
+                if(paciente.getGravedad()==2){
+                    sala.agregarASala2();
+                    habitaciones.add(sala);
+                }
+                if(paciente.getGravedad()==3){
+                    sala.agregarASala3();
+                    habitaciones.add(sala);
+                }
             }
             
             //Opcion mostrar a los pacientes
             if(opcion == 4){
-                //Si hay capacidad 15, significa que todavía no se ingresa ningun paciente
-                if(capacidad == 15){
-                    System.out.println("Todavía no se ingresa ningun paciente");
-                }
-                paciente.mostrarPacientes(sala,capacidad);
+                sala.mostrarPaciente();
             }
         }while(verificar(opcion) == 1);
         
-     */   
+       
     }
     
     public static void menu(){
@@ -78,23 +78,34 @@ public class GestionSalud {
             return 0;
         }
     }
-    /*
-    public static void agregarASala(Paciente paciente,Paciente sala[],int capacidad){ 
-        //Recorre el arreglo hasta que encuentre una posicion vacia
-        for(int i = 0; i<15;i++){
-            if(sala[i].getGravedad() == 0 ){
-                sala[i].setNombre(paciente.getNombre());
-                sala[i].setApellido(paciente.getApellido());
-                sala[i].setGravedad(paciente.getGravedad());
-                sala[i].setRut(paciente.getRut());
-                sala[i].setFecha(paciente.getFecha());
-                System.out.println("----PACIENTE AGREGADO----");
-                break;
+    
+    public static void lecturaDatosPaciente(BufferedReader lectura,Paciente paciente) throws IOException{
+        int verificar = 0,gravedad;
+        String nombre, apellido, rut, fecha;
+        
+        System.out.println("Ingrese Nombre del paciente:");
+        nombre = lectura.readLine();
+        
+        System.out.println("Ingrese apellido del paciente:");
+        apellido = lectura.readLine();
+        
+        System.out.println("Ingrese rut del paciente:");
+        rut = lectura.readLine();
+        do{
+            System.out.println("Seleecione la gravedad del paciente");
+            System.out.println("1)Leve    2)Mediana    3)Grave");
+            gravedad = Integer.parseInt(lectura.readLine());
+            if(gravedad == 1 || gravedad == 2 || gravedad == 3){
+                verificar +=1;
+            }else{
+                System.out.println("Ingrese un valor valido");
             }
-        }
-        //No quedan mas camas para agregar a pacientes
-        if(capacidad == 0){
-            System.out.println("No quedan mas camas");
-        }
-    } */
+        }while(verificar == 0);
+        System.out.println("Ingrese la fecha de ingreso (formato DD-MM-AA):");
+        fecha = lectura.readLine();
+        
+        paciente.ingresarPaciente(nombre, apellido, rut);
+        paciente.ingresarPaciente(gravedad, fecha);
+        
+    }
 }

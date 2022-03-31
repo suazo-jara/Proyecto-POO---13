@@ -60,10 +60,15 @@ public class Paciente {
     
     //Ingresa el nombre, apellido y RUT del paciente
     public void ingresarPaciente(String nombre, String apellido, String rut){
-        
+        this.nombre=nombre;
+        this.apellido=apellido;
+        this.rut=rut;
     }
     //Ingresa la gravedad y la fecha de ingreso del paciente
     public void ingresarPaciente(int gravedad, String fecha){
-        
+        this.gravedad=gravedad;
+        this.fecha=fecha;
     }
+    
+    
 }
