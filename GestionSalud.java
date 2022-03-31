@@ -11,48 +11,31 @@ public class GestionSalud {
     public static void main(String[] args) throws IOException{
         //Instanciar variables
         BufferedReader lectura = new BufferedReader (new InputStreamReader(System.in));
-        
-        int opcion;
-        Paciente paciente=new Paciente();
-        Sala sala = new Sala();
-        
-        ArrayList<Sala> habitaciones = new ArrayList();        
+        Map<Integer, Piso> pisos = new HashMap();
+        //Sala sala = new Sala();
+        Paciente paciente = new Paciente();               
         //Ciclo para mostrar menu con sus opciones
         do{
-            opcion = 9;
-            do{
-                //Muestra menu hasta que ingrese una opcion valida
-                menu();
-                opcion = Integer.parseInt(lectura.readLine());
-            }while(verificar(opcion) == 0);
-            
-            if(opcion == 1){
-                //Se guardan los datos del paciente
-                lecturaDatosPaciente(lectura,paciente);
-                sala.recolectarDatos(paciente);
-                sala.recolectarDatos(paciente.getRut());
-                if(paciente.getGravedad()==1){
-                    sala.agregarASala1();
-                    habitaciones.add(sala);
-                }
-                if(paciente.getGravedad()==2){
-                    sala.agregarASala2();
-                    habitaciones.add(sala);
-                }
-                if(paciente.getGravedad()==3){
-                    sala.agregarASala3();
-                    habitaciones.add(sala);
-                }
+            //Muestra menu hasta que ingrese una opcion valida
+            menu();
+            switch(Integer.parseInt(lectura.readLine())){
+                case 1: lecturaPaciente(lectura, paciente);
+                break;
+                /*
+                case 2: darDeAlta();
+                break;
+                case 3: estadoDeGravedad();
+                break;
+                case 4: mostrarPacientes();
+                break;
+                */
+                case 0: salir();
+                break;
+                default: System.out.println("Opción inválida. Intente nuevamente.");
+                break;
             }
-            
-            //Opcion mostrar a los pacientes
-            if(opcion == 4){
-                sala.mostrarPaciente();
-            }
-        }while(verificar(opcion) == 1);
-        
-       
-    }
+        }while(1 > 0);
+        }
     
     public static void menu(){
         //Muestra menu
@@ -65,22 +48,15 @@ public class GestionSalud {
         System.out.println("0) Salir");
     }
     
-    public static int verificar(int opcion){
+    public static void salir(){
         //Termina el programa
-        if(opcion == 0){
-            System.exit(0);
-        }
-        //Opciones validas
-        if(opcion == 1 || opcion == 2 || opcion == 3 || opcion == 4){
-            return 1;
-        }else{
-            System.out.println("Elija una opcion valida");
-            return 0;
-        }
+        System.out.println("Nos vimos.");
+        System.exit(0);
+            
     }
     
-    public static void lecturaDatosPaciente(BufferedReader lectura,Paciente paciente) throws IOException{
-        int verificar = 0,gravedad;
+    public static void lecturaPaciente(BufferedReader lectura,Paciente paciente) throws IOException{
+        int gravedad;
         String nombre, apellido, rut, fecha;
         
         System.out.println("Ingrese Nombre del paciente:");
@@ -89,23 +65,22 @@ public class GestionSalud {
         System.out.println("Ingrese apellido del paciente:");
         apellido = lectura.readLine();
         
-        System.out.println("Ingrese rut del paciente:");
+        System.out.println("Ingrese RUT del paciente:");
         rut = lectura.readLine();
-        do{
-            System.out.println("Seleecione la gravedad del paciente");
-            System.out.println("1)Leve    2)Mediana    3)Grave");
-            gravedad = Integer.parseInt(lectura.readLine());
-            if(gravedad == 1 || gravedad == 2 || gravedad == 3){
-                verificar +=1;
-            }else{
-                System.out.println("Ingrese un valor valido");
-            }
-        }while(verificar == 0);
+        
+        System.out.println("Ingrese la gravedad del paciente:");
+        System.out.println("1)Leve    2)Mediana    3)Grave");
+        gravedad = Integer.parseInt(lectura.readLine());
+        
         System.out.println("Ingrese la fecha de ingreso (formato DD-MM-AA):");
         fecha = lectura.readLine();
         
-        paciente.ingresarPaciente(nombre, apellido, rut);
-        paciente.ingresarPaciente(gravedad, fecha);
+        paciente.leerDatos(nombre, apellido, rut);
+        paciente.leerDatos(gravedad, fecha);
         
+        /*
+        sala.recolectarDatos(paciente);
+        sala.recolectarDatos(paciente.getRut());
+        */
     }
 }
