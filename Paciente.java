@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Map;
 
 public class Paciente {
     private String nombre;
@@ -68,6 +69,10 @@ public class Paciente {
     public void leerDatos(int gravedad, String fecha){
         this.gravedad=gravedad;
         this.fecha=fecha;
+    }
+
+    Iterable<Map.Entry<String, Paciente>> entrySet() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

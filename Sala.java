@@ -20,9 +20,42 @@ public class Sala {
         this.codigoGravedad = codigoGravedad;
     }
     
-    public void agregarASala(){
+    public Map agregarASala(){
         pacientes.put(clave, paciente);
+        System.out.println("------clave  " + pacientes.get(clave).getNombre());
+        return pacientes;
     }
+    
+    public void mostrar(){
+        
+        for(Map.Entry<String,Paciente> recorrer : pacientes.entrySet()){
+            String key = recorrer.getKey();
+            Paciente pivot = recorrer.getValue();
+            
+            System.out.println("cantidad " + pacientes.size());
+            
+            System.out.println("clave: " + key + "llave  " + pacientes.get(key).getRut());
+            System.out.println("-----------------------------");
+            System.out.println("Nombre: " + pivot.getNombre());
+            System.out.println("Apellido: " + pivot.getApellido());
+            System.out.println("Rut: " + pivot.getRut());
+            System.out.println("Fecha de ingreso: " + pivot.getFecha());
+            System.out.print("Gravedad: " + pivot.getGravedad());
+            if(pivot.getGravedad() == 1){
+                System.out.println("(Leve)");
+            }
+            if(pivot.getGravedad() == 2){
+                System.out.println("(Mediana)");
+            }
+            if(pivot.getGravedad() == 3){
+                System.out.println("(Grave)");
+            }
+            System.out.println("-----------------------------");
+            }
+            System.out.println("-----------------------------");
+    
+    }
+        
     /*
     public void mostrarPaciente()
     {        //Mapa de pacientes leves

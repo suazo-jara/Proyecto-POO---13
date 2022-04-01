@@ -2,16 +2,19 @@
 import java.util.*;
 
 public class Piso {
-    ArrayList<Sala> salas = new ArrayList();
+    ArrayList<Map> salas = new ArrayList();
 
     public Piso() {
     }
 
-    public ArrayList<Sala> getSalas() {
+    public ArrayList<Map> getSalas() {
         return salas;
     }
 
-    public void setSalas(ArrayList<Sala> habitaciones) {
+    public void setSalas(ArrayList<Map> habitaciones) {
         this.salas = habitaciones;
+    }
+    public void agregatSalas(Map pacientes){
+        salas.add(pacientes);
     }
 }

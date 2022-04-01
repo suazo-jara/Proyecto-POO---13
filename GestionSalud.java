@@ -11,15 +11,25 @@ public class GestionSalud {
     public static void main(String[] args) throws IOException{
         //Instanciar variables
         BufferedReader lectura = new BufferedReader (new InputStreamReader(System.in));
-        Map<Integer, Piso> pisos = new HashMap();
+        Map<String, Paciente> pacientes = new HashMap();
         //Sala sala = new Sala();
-        Paciente paciente = new Paciente();               
+        Paciente paciente = new Paciente(); 
+        Sala sala = new Sala();
+        Piso piso = new Piso();
+        int numeroPiso = 1,cont = 0;
         //Ciclo para mostrar menu con sus opciones
         do{
             //Muestra menu hasta que ingrese una opcion valida
             menu();
             switch(Integer.parseInt(lectura.readLine())){
-                case 1: lecturaPaciente(lectura, paciente);
+                case 1: {
+                    lecturaPaciente(lectura, pacientes, paciente,sala,piso,numeroPiso);
+                    if(cont == 5){
+                        numeroPiso +=1;
+                        cont=-1;
+                    }
+                    cont+=1;
+                }
                 break;
                 /*
                 case 2: darDeAlta();
@@ -55,7 +65,7 @@ public class GestionSalud {
             
     }
     
-    public static void lecturaPaciente(BufferedReader lectura,Paciente paciente) throws IOException{
+    public static void lecturaPaciente(BufferedReader lectura,Map pacientes, Paciente paciente, Sala sala, Piso piso, int numeroPiso) throws IOException{
         int gravedad;
         String nombre, apellido, rut, fecha;
         
@@ -78,9 +88,14 @@ public class GestionSalud {
         paciente.leerDatos(nombre, apellido, rut);
         paciente.leerDatos(gravedad, fecha);
         
-        /*
+        //Se agrega pacientes a sala
         sala.recolectarDatos(paciente);
         sala.recolectarDatos(paciente.getRut());
-        */
+        pacientes = sala.agregarASala();
+        sala.mostrar();
+        
+        //Se agrega las salas a piso
+        piso.agregatSalas(pacientes);
+        
     }
 }
