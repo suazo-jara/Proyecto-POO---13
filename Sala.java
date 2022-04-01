@@ -5,11 +5,14 @@ public class Sala {
     
     private Map<String, Paciente> pacientes = new HashMap ();
     private int codigoGravedad;    
-    
+    // Sobrecarga de constructores
     public Sala(){
         
     }
-
+    public Sala(int gravedad){
+        this.codigoGravedad = gravedad;
+        pacientes = new HashMap();
+    }
     public int getCodigoGravedad() {
         return codigoGravedad;
     }
