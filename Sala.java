@@ -4,9 +4,7 @@ import java.util.*;
 public class Sala {
     
     private Map<String, Paciente> pacientes = new HashMap ();
-    private int codigoGravedad;
-    private String clave;
-    private Paciente paciente;
+    private int codigoGravedad;    
     
     public Sala(){
         
@@ -20,22 +18,23 @@ public class Sala {
         this.codigoGravedad = codigoGravedad;
     }
     
-    public Map agregarASala(){
+    public Map agregarASala(Paciente paciente){
+        String clave;
+        clave = paciente.getRut();
         pacientes.put(clave, paciente);
-        System.out.println("------clave  " + pacientes.get(clave).getNombre());
+        //System.out.println("------clave  " + pacientes.get(clave).getNombre());
         return pacientes;
     }
     
     public void mostrar(){
-        
+        System.out.println("Cantidad de datos almacenados: " + pacientes.size());
         for(Map.Entry<String,Paciente> recorrer : pacientes.entrySet()){
             String key = recorrer.getKey();
             Paciente pivot = recorrer.getValue();
             
-            System.out.println("cantidad " + pacientes.size());
-            
-            System.out.println("clave: " + key + "llave  " + pacientes.get(key).getRut());
+            System.out.println("Clave: " + key + " Valor: " +  pacientes.get(key));
             System.out.println("-----------------------------");
+            /*
             System.out.println("Nombre: " + pivot.getNombre());
             System.out.println("Apellido: " + pivot.getApellido());
             System.out.println("Rut: " + pivot.getRut());
@@ -53,7 +52,8 @@ public class Sala {
             System.out.println("-----------------------------");
             }
             System.out.println("-----------------------------");
-    
+            */
+    }
     }
         
     /*
@@ -84,13 +84,4 @@ public class Sala {
             System.out.println("-----------------------------");
     }
 */
-    
-    public void recolectarDatos(String clave){
-        this.clave = clave;
-    }
-    
-    public void recolectarDatos(Paciente paciente){
-        this.paciente=paciente;
-    }
-    
 }

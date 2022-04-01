@@ -11,24 +11,19 @@ public class GestionSalud {
     public static void main(String[] args) throws IOException{
         //Instanciar variables
         BufferedReader lectura = new BufferedReader (new InputStreamReader(System.in));
+        ArrayList<Map> salas = new ArrayList();
         Map<String, Paciente> pacientes = new HashMap();
-        crearPisos();
         Sala sala = new Sala();
         Paciente paciente = new Paciente();
-
-        int numeroPiso = 1,cont = 0;
+        
         //Ciclo para mostrar menu con sus opciones
         do{
             //Muestra menu hasta que ingrese una opcion valida
             menu();
             switch(Integer.parseInt(lectura.readLine())){
                 case 1: {
-                    lecturaPaciente(lectura, pacientes, paciente,sala,piso,numeroPiso);
-                    if(cont == 5){
-                        numeroPiso +=1;
-                        cont=-1;
-                    }
-                    cont+=1;
+                    lecturaPaciente(lectura, pacientes, paciente, sala);
+                    paciente = new Paciente();
                 }
                 break;
                 /*
@@ -65,7 +60,7 @@ public class GestionSalud {
             
     }
     
-    public static void lecturaPaciente(BufferedReader lectura,Map pacientes, Paciente paciente, Sala sala, Piso piso, int numeroPiso) throws IOException{
+    public static void lecturaPaciente(BufferedReader lectura,Map pacientes, Paciente paciente, Sala sala) throws IOException{
         int gravedad;
         String nombre, apellido, rut, fecha;
         
@@ -89,21 +84,8 @@ public class GestionSalud {
         paciente.leerDatos(gravedad, fecha);
         
         //Se agrega pacientes a sala
-        sala.recolectarDatos(paciente);
-        sala.recolectarDatos(paciente.getRut());
-        pacientes = sala.agregarASala();
+        sala.agregarASala(paciente);
         sala.mostrar();
-        
-        //Se agrega las salas a piso
-        //piso.agregarSalas(pacientes);
-        
-    }
-        // Funcion que crea los pisos del hospital y los inserta en el mapa
-    public static void crearPisos(){
-        Map<Integer, Piso> pisos = new HashMap();
-        for(int i=1; i<=3 ; i++){
-           Piso piso = new Piso();
-           pisos.put(i, piso);
-       }
+      
     }
 }
