@@ -12,10 +12,10 @@ public class GestionSalud {
         //Instanciar variables
         BufferedReader lectura = new BufferedReader (new InputStreamReader(System.in));
         Map<String, Paciente> pacientes = new HashMap();
-        //Sala sala = new Sala();
-        Paciente paciente = new Paciente(); 
+        crearPisos();
         Sala sala = new Sala();
-        Piso piso = new Piso();
+        Paciente paciente = new Paciente();
+
         int numeroPiso = 1,cont = 0;
         //Ciclo para mostrar menu con sus opciones
         do{
@@ -95,7 +95,15 @@ public class GestionSalud {
         sala.mostrar();
         
         //Se agrega las salas a piso
-        piso.agregatSalas(pacientes);
+        //piso.agregarSalas(pacientes);
         
+    }
+        // Funcion que crea los pisos del hospital y los inserta en el mapa
+    public static void crearPisos(){
+        Map<Integer, Piso> pisos = new HashMap();
+        for(int i=1; i<=3 ; i++){
+           Piso piso = new Piso();
+           pisos.put(i, piso);
+       }
     }
 }

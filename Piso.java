@@ -14,7 +14,7 @@ public class Piso {
     public void setSalas(ArrayList<Map> habitaciones) {
         this.salas = habitaciones;
     }
-    public void agregatSalas(Map pacientes){
+    /*public void agregarSalas(Map pacientes){
         salas.add(pacientes);
-    }
+    }*/
 }
