@@ -13,11 +13,13 @@ public class Sala {
     public int getCodigoGravedad() {
         return codigoGravedad;
     }
-
+    //Sobrecarga metodo setter par al codigoGravedad
     public void setCodigoGravedad(int codigoGravedad) {
         this.codigoGravedad = codigoGravedad;
     }
-    
+    public void setCodigoGravedad(short codigoGravedad){
+        this.codigoGravedad = codigoGravedad;
+    }
     public Map agregarASala(Paciente paciente){
         String clave;
         clave = paciente.getRut();

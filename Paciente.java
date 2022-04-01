@@ -58,7 +58,7 @@ public class Paciente {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-    
+    //Sobrecarga para el metodo de leerDatos
     //Ingresa el nombre, apellido y RUT del paciente
     public void leerDatos(String nombre, String apellido, String rut){
         this.nombre=nombre;
