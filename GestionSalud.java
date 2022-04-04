@@ -15,6 +15,8 @@ public class GestionSalud {
         Map<String, Paciente> pacientes = new HashMap();
         Sala sala = new Sala();
         Paciente paciente = new Paciente();
+        int max_pac = 0; //Contador de máximo de pacientes por sala
+        int acum_salas = 0;
         
         //Ciclo para mostrar menu con sus opciones
         do{
@@ -22,8 +24,21 @@ public class GestionSalud {
             menu();
             switch(Integer.parseInt(lectura.readLine())){
                 case 1: {
+                    
+                    if (max_pac < 5){
+                        salas.remove(acum_salas);
+                    }else{ //(max_pac = 5)
+                        pacientes = new HashMap();
+                        max_pac = 0;
+                        acum_salas++;
+                    }
+                    
                     lecturaPaciente(lectura, pacientes, paciente, sala);
+                    salas.add(acum_salas, pacientes);
+                    
+                    //Prepara variables para la próxima iteración
                     paciente = new Paciente();
+                    max_pac++;
                 }
                 break;
                 /*
@@ -84,7 +99,7 @@ public class GestionSalud {
         paciente.leerDatos(gravedad, fecha);
         
         //Se agrega pacientes a sala
-        sala.agregarASala(paciente);
+        pacientes = sala.agregarASala(paciente);
         sala.mostrar();
       
     }
