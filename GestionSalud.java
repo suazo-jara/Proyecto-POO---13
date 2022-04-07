@@ -12,12 +12,12 @@ public class GestionSalud {
         //Instanciar variables
         BufferedReader lectura = new BufferedReader (new InputStreamReader(System.in));
         ArrayList<Map> salas = new ArrayList();
-        Map<String, Paciente> pacientes = new HashMap();
+        //HashMap<String, Paciente> pacientes = new HashMap();
         Sala sala = new Sala();
         Paciente paciente = new Paciente();
-        int max_pac = 0; //Contador de máximo de pacientes por sala
-        int acum_salas = 0;
-        
+        Map<String, Paciente> paciente1 = new HashMap();
+        Map<String, Paciente> paciente2 = new HashMap();
+        Map<String, Paciente> paciente3 = new HashMap();
         //Ciclo para mostrar menu con sus opciones
         do{
             //Muestra menu hasta que ingrese una opcion valida
@@ -25,20 +25,22 @@ public class GestionSalud {
             switch(Integer.parseInt(lectura.readLine())){
                 case 1: {
                     
-                    if (max_pac < 5){
-                        salas.remove(acum_salas);
-                    }else{ //(max_pac = 5)
-                        pacientes = new HashMap();
-                        max_pac = 0;
-                        acum_salas++;
+                    lecturaPaciente(lectura, paciente, sala);
+                    //Se agrega pacientes a sala
+                    switch(paciente.getGravedad()){
+                        case 1: 
+                            paciente1 = sala.agregarPaciente(paciente);
+                            salas.add(paciente.getGravedad(), paciente1);
+                        case 2: 
+                            paciente2 = sala.agregarPaciente(paciente);
+                            salas.add(paciente.getGravedad(), paciente2);
+                        case 3: 
+                            paciente3 = sala.agregarPaciente(paciente);
+                            salas.add(paciente.getGravedad(), paciente3);
                     }
-                    
-                    lecturaPaciente(lectura, pacientes, paciente, sala);
-                    salas.add(acum_salas, pacientes);
                     
                     //Prepara variables para la próxima iteración
                     paciente = new Paciente();
-                    max_pac++;
                 }
                 break;
                 /*
@@ -46,9 +48,19 @@ public class GestionSalud {
                 break;
                 case 3: estadoDeGravedad();
                 break;
-                case 4: mostrarPacientes();
-                break;
                 */
+                case 4: sala.mostrarPacientes();
+                break;
+                
+                case 5: 
+                    salas.add(paciente1);
+                    salas.add(paciente2);
+                    salas.add(paciente3);
+                break;
+                
+                case 6:
+                break;
+                
                 case 0: salir();
                 break;
                 default: System.out.println("Opción inválida. Intente nuevamente.");
@@ -59,9 +71,9 @@ public class GestionSalud {
     
     public static void menu(){
         //Muestra menu
-        System.out.println("Bienvenido al sistema de gestion de camillas");     
+        System.out.println();     
         System.out.println("Elija una opción:");
-        System.out.println("1) Agregar paciente");
+        System.out.println("1) Leer paciente");
         System.out.println("2) Liberar paciente");
         System.out.println("3) Ver estado de gravedad de paciente");
         System.out.println("4) Mostrar pacientes");
@@ -75,7 +87,7 @@ public class GestionSalud {
             
     }
     
-    public static void lecturaPaciente(BufferedReader lectura,Map pacientes, Paciente paciente, Sala sala) throws IOException{
+    public static void lecturaPaciente(BufferedReader lectura, Paciente paciente, Sala sala) throws IOException{
         int gravedad;
         String nombre, apellido, rut, fecha;
         
@@ -97,10 +109,5 @@ public class GestionSalud {
         
         paciente.leerDatos(nombre, apellido, rut);
         paciente.leerDatos(gravedad, fecha);
-        
-        //Se agrega pacientes a sala
-        pacientes = sala.agregarASala(paciente);
-        sala.mostrar();
-      
     }
 }

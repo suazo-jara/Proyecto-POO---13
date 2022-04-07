@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Sala {
     
-    private Map<String, Paciente> pacientes = new HashMap ();
+    private HashMap<String, Paciente> pacientes = new HashMap ();
     private int codigoGravedad;    
     // Sobrecarga de constructores
     public Sala(){
@@ -23,7 +23,7 @@ public class Sala {
     public void setCodigoGravedad(short codigoGravedad){
         this.codigoGravedad = codigoGravedad;
     }
-    public Map agregarASala(Paciente paciente){
+    public Map agregarPaciente(Paciente paciente){
         String clave;
         clave = paciente.getRut();
         pacientes.put(clave, paciente);
@@ -31,18 +31,19 @@ public class Sala {
         return pacientes;
     }
     
-    public void mostrar(){
+    public void mostrarPacientes(){
         System.out.println("Cantidad de datos almacenados: " + pacientes.size());
+        System.out.println("-----------------------------");
         for(Map.Entry<String,Paciente> recorrer : pacientes.entrySet()){
-            String key = recorrer.getKey();
             Paciente pivot = recorrer.getValue();
-            
+            /*
+            String key = recorrer.getKey();
             System.out.println("Clave: " + key + " Valor: " +  pacientes.get(key));
             System.out.println("-----------------------------");
-            /*
+            */
             System.out.println("Nombre: " + pivot.getNombre());
             System.out.println("Apellido: " + pivot.getApellido());
-            System.out.println("Rut: " + pivot.getRut());
+            System.out.println("RUT: " + pivot.getRut());
             System.out.println("Fecha de ingreso: " + pivot.getFecha());
             System.out.print("Gravedad: " + pivot.getGravedad());
             if(pivot.getGravedad() == 1){
@@ -56,37 +57,6 @@ public class Sala {
             }
             System.out.println("-----------------------------");
             }
-            System.out.println("-----------------------------");
-            */
-    }
-    }
-        
-    /*
-    public void mostrarPaciente()
-    {        //Mapa de pacientes leves
-        for(Map.Entry<String,Paciente> recorrer : pacientes.entrySet()){
-            String key = recorrer.getKey();
-            Paciente pacientes = recorrer.getValue();
             
-            System.out.println("clave: " + key);
-            System.out.println("-----------------------------");
-            System.out.println("Nombre: " + pacientes.getNombre());
-            System.out.println("Apellido: " + pacientes.getApellido());
-            System.out.println("Rut: " + pacientes.getRut());
-            System.out.println("Fecha de ingreso: " + pacientes.getFecha());
-            System.out.print("Gravedad: " + pacientes.getGravedad());
-            if(pacientes.getGravedad() == 1){
-                System.out.println("(Leve)");
-            }
-            if(pacientes.getGravedad() == 2){
-                System.out.println("(Mediana)");
-            }
-            if(pacientes.getGravedad() == 3){
-                System.out.println("(Grave)");
-            }
-            System.out.println("-----------------------------");
-            }
-            System.out.println("-----------------------------");
     }
-*/
 }
