@@ -23,7 +23,7 @@ public class Sala {
     public void setCodigoGravedad(short codigoGravedad){
         this.codigoGravedad = codigoGravedad;
     }
-    public Map agregarPaciente(Paciente paciente){
+    public HashMap agregarPaciente(Paciente paciente){
         String clave;
         clave = paciente.getRut();
         pacientes.put(clave, paciente);

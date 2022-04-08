@@ -11,13 +11,17 @@ public class GestionSalud {
     public static void main(String[] args) throws IOException{
         //Instanciar variables
         BufferedReader lectura = new BufferedReader (new InputStreamReader(System.in));
-        ArrayList<Map> salas = new ArrayList();
-        //HashMap<String, Paciente> pacientes = new HashMap();
-        Sala sala = new Sala();
+        ArrayList<Sala> salas = new ArrayList();
+        HashMap<String, Paciente> pacientes = new HashMap();
+        for (int i = 0; i < 3; i++){
+            Sala sala = new Sala();
+            salas.add(sala);
+        }
         Paciente paciente = new Paciente();
-        Map<String, Paciente> paciente1 = new HashMap();
-        Map<String, Paciente> paciente2 = new HashMap();
-        Map<String, Paciente> paciente3 = new HashMap();
+        //Map<String, Paciente> paciente1 = new HashMap();
+        //Map<String, Paciente> paciente2 = new HashMap();
+        //Map<String, Paciente> paciente3 = new HashMap();
+        
         //Ciclo para mostrar menu con sus opciones
         do{
             //Muestra menu hasta que ingrese una opcion valida
@@ -25,8 +29,11 @@ public class GestionSalud {
             switch(Integer.parseInt(lectura.readLine())){
                 case 1: {
                     
-                    lecturaPaciente(lectura, paciente, sala);
-                    //Se agrega pacientes a sala
+                    //Se agregan pacientes a sala según gravedad
+                    lecturaPaciente(lectura, paciente, salas.get(paciente.getGravedad() - 1));
+                    pacientes = salas.get(paciente.getGravedad() - 1).agregarPaciente(paciente);
+                    //salas.set(paciente.getGravedad() - 1, element);
+                    /*
                     switch(paciente.getGravedad()){
                         case 1: 
                             paciente1 = sala.agregarPaciente(paciente);
@@ -38,8 +45,9 @@ public class GestionSalud {
                             paciente3 = sala.agregarPaciente(paciente);
                             salas.add(paciente.getGravedad(), paciente3);
                     }
+                */
                     
-                    //Prepara variables para la próxima iteración
+                    //Prepara variable para el próximo paciente a ingresar
                     paciente = new Paciente();
                 }
                 break;
@@ -49,14 +57,15 @@ public class GestionSalud {
                 case 3: estadoDeGravedad();
                 break;
                 */
-                case 4: sala.mostrarPacientes();
-                break;
+                case 4: 
+                    for (int i = 0; i < 3; i++){
+                        salas.get(i).mostrarPacientes();
+                    }
+                break; 
                 
                 case 5: 
-                    salas.add(paciente1);
-                    salas.add(paciente2);
-                    salas.add(paciente3);
                 break;
+                
                 
                 case 6:
                 break;
@@ -74,9 +83,10 @@ public class GestionSalud {
         System.out.println();     
         System.out.println("Elija una opción:");
         System.out.println("1) Leer paciente");
-        System.out.println("2) Liberar paciente");
+        System.out.println("2) Dar de alta a paciente");
         System.out.println("3) Ver estado de gravedad de paciente");
-        System.out.println("4) Mostrar pacientes");
+        System.out.println("4) Mostrar todos los pacientes");
+        System.out.println("5) Mostrar todas las salas");
         System.out.println("0) Salir");
     }
     
