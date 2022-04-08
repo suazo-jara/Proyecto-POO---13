@@ -23,12 +23,11 @@ public class Sala {
     public void setCodigoGravedad(short codigoGravedad){
         this.codigoGravedad = codigoGravedad;
     }
-    public HashMap agregarPaciente(Paciente paciente){
+    public void agregarPaciente(Paciente paciente){
         String clave;
         clave = paciente.getRut();
         pacientes.put(clave, paciente);
         //System.out.println("------clave  " + pacientes.get(clave).getNombre());
-        return pacientes;
     }
     
     public void mostrarPacientes(){

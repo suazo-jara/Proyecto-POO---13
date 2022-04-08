@@ -12,15 +12,11 @@ public class GestionSalud {
         //Instanciar variables
         BufferedReader lectura = new BufferedReader (new InputStreamReader(System.in));
         ArrayList<Sala> salas = new ArrayList();
-        HashMap<String, Paciente> pacientes = new HashMap();
         for (int i = 0; i < 3; i++){
             Sala sala = new Sala();
             salas.add(sala);
         }
         Paciente paciente = new Paciente();
-        //Map<String, Paciente> paciente1 = new HashMap();
-        //Map<String, Paciente> paciente2 = new HashMap();
-        //Map<String, Paciente> paciente3 = new HashMap();
         
         //Ciclo para mostrar menu con sus opciones
         do{
@@ -28,25 +24,10 @@ public class GestionSalud {
             menu();
             switch(Integer.parseInt(lectura.readLine())){
                 case 1: {
-                    
+                    //Se leen los datos del paciente
+                    leerPaciente(lectura, paciente);
                     //Se agregan pacientes a sala según gravedad
-                    lecturaPaciente(lectura, paciente, salas.get(paciente.getGravedad() - 1));
-                    pacientes = salas.get(paciente.getGravedad() - 1).agregarPaciente(paciente);
-                    //salas.set(paciente.getGravedad() - 1, element);
-                    /*
-                    switch(paciente.getGravedad()){
-                        case 1: 
-                            paciente1 = sala.agregarPaciente(paciente);
-                            salas.add(paciente.getGravedad(), paciente1);
-                        case 2: 
-                            paciente2 = sala.agregarPaciente(paciente);
-                            salas.add(paciente.getGravedad(), paciente2);
-                        case 3: 
-                            paciente3 = sala.agregarPaciente(paciente);
-                            salas.add(paciente.getGravedad(), paciente3);
-                    }
-                */
-                    
+                    salas.get(paciente.getGravedad() - 1).agregarPaciente(paciente);
                     //Prepara variable para el próximo paciente a ingresar
                     paciente = new Paciente();
                 }
@@ -97,7 +78,7 @@ public class GestionSalud {
             
     }
     
-    public static void lecturaPaciente(BufferedReader lectura, Paciente paciente, Sala sala) throws IOException{
+    public static void leerPaciente(BufferedReader lectura, Paciente paciente) throws IOException{
         int gravedad;
         String nombre, apellido, rut, fecha;
         
