@@ -31,8 +31,6 @@ public class Sala {
     }
     
     public void mostrarPacientes(){
-        System.out.println("Cantidad de datos almacenados: " + pacientes.size());
-        System.out.println("-----------------------------");
         for(Map.Entry<String,Paciente> recorrer : pacientes.entrySet()){
             Paciente pivot = recorrer.getValue();
             /*
@@ -55,7 +53,11 @@ public class Sala {
                 System.out.println("(Grave)");
             }
             System.out.println("-----------------------------");
-            }
-            
+        } 
+    }
+    
+    public void mostrarSalas(){
+        System.out.println("Cantidad de pacientes: " + pacientes.size());
+        System.out.println("-----------------------------");
     }
 }

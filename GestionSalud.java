@@ -39,12 +39,19 @@ public class GestionSalud {
                 break;
                 */
                 case 4: 
-                    for (int i = 0; i < 3; i++){
+                    for (int i = 0; i < salas.size(); i++){
+                        System.out.println("S A L A  " + (i + 1));
                         salas.get(i).mostrarPacientes();
+                        System.out.println("");
+                        
                     }
                 break; 
                 
-                case 5: 
+                case 5:
+                    for (int i = 0; i < salas.size(); i++){
+                        System.out.println("S A L A  " + (i + 1));
+                        salas.get(i).mostrarSalas();
+                    }
                 break;
                 
                 
@@ -64,8 +71,8 @@ public class GestionSalud {
         System.out.println();     
         System.out.println("Elija una opción:");
         System.out.println("1) Leer paciente");
-        System.out.println("2) Dar de alta a paciente");
-        System.out.println("3) Ver estado de gravedad de paciente");
+        System.out.println("2) Dar de alta a paciente                   [WIP]");
+        System.out.println("3) Ver estado de gravedad de paciente       [WIP]");
         System.out.println("4) Mostrar todos los pacientes");
         System.out.println("5) Mostrar todas las salas");
         System.out.println("0) Salir");
@@ -82,7 +89,7 @@ public class GestionSalud {
         int gravedad;
         String nombre, apellido, rut, fecha;
         
-        System.out.println("Ingrese Nombre del paciente:");
+        System.out.println("Ingrese nombre del paciente:");
         nombre = lectura.readLine();
         
         System.out.println("Ingrese apellido del paciente:");
