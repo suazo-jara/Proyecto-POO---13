@@ -55,7 +55,15 @@ public class Sala {
             System.out.println("-----------------------------");
         } 
     }
-    
+    public Paciente eliminarPaciente(String clave){
+    Paciente pp;
+    pp = null;
+        if(pacientes.containsKey(clave)){
+           pp=pacientes.remove(clave); 
+           return pp;
+        }
+        return pp;
+    }
     public void mostrarSalas(){
         System.out.println("Cantidad de pacientes: " + pacientes.size());
         System.out.println("-----------------------------");

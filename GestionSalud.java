@@ -32,10 +32,26 @@ public class GestionSalud {
                     paciente = new Paciente();
                 }
                 break;
-                /*
-                case 2: darDeAlta();
+                
+                case 2:{
+                    System.out.println("Inserte rut del paciente a dar de alta");
+                    String clave = lectura.readLine();
+                    Paciente pp;
+                    pp = null;
+                    for (int i = 0; i < salas.size() && pp == null; i++){
+
+                        pp=salas.get(i).eliminarPaciente(clave);
+                        System.out.println("");
+                        
+                    }
+                    if(pp!=null){
+                        System.out.println("Paciente dado de alta correctamente");
+                    }else{
+                        System.out.println("rut de paciente ingresado no existe en la base de datos");
+                    }
+                }
                 break;
-                case 3: estadoDeGravedad();
+                /*case 3: estadoDeGravedad();
                 break;
                 */
                 case 4: 
