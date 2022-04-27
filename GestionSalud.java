@@ -72,6 +72,28 @@ public class GestionSalud {
                 
                 
                 case 6:
+                    System.out.println("Ingrese el rut del paciente:");
+                    String rut = lectura.readLine();
+                    System.out.println("Ingrese la nueva gravedad del paciente:");
+                    int gravedad = Integer.parseInt(lectura.readLine());
+                    int verificar = 0;
+                    paciente = new Paciente();
+                    //Recorre lista de salas y ve dentro si se encuentra en el mapa
+                    for(int i = 0; i<salas.size();i++){
+                        if(salas.get(i).buscarPaciente(rut,gravedad) != null){
+                            paciente = salas.get(i).buscarPaciente(rut,gravedad);
+                            verificar = 1;
+                            //Eliminar paciente con gravedad antigua
+                            salas.get(i).eliminarPaciente(rut);
+                        }
+                    }
+                    if(verificar == 0){
+                        System.out.println("--NO EXISTE EL RUT INGRESADO--");
+                    }else{
+                        //Agregar paciente con gravedad nueva
+                        salas.get(paciente.getGravedad()-1).agregarPaciente(paciente);
+                        System.out.println("--Paciente modificado correctamente--");
+                    }
                 break;
                 
                 case 0: salir();
@@ -91,6 +113,7 @@ public class GestionSalud {
         System.out.println("3) Ver estado de gravedad de paciente       [WIP]");
         System.out.println("4) Mostrar todos los pacientes");
         System.out.println("5) Mostrar todas las salas");
+        System.out.println("6) Modificar estado de gravedad paciente");
         System.out.println("0) Salir");
     }
     
@@ -124,4 +147,5 @@ public class GestionSalud {
         paciente.leerDatos(nombre, apellido, rut);
         paciente.leerDatos(gravedad, fecha);
     }
+    
 }

@@ -55,6 +55,7 @@ public class Sala {
             System.out.println("-----------------------------");
         } 
     }
+    
     public Paciente eliminarPaciente(String clave){
     Paciente pp;
     pp = null;
@@ -64,8 +65,18 @@ public class Sala {
         }
         return pp;
     }
+    
     public void mostrarSalas(){
         System.out.println("Cantidad de pacientes: " + pacientes.size());
         System.out.println("-----------------------------");
+    }
+    
+    public Paciente buscarPaciente(String rut, int gravedad){
+        if(pacientes.containsKey(rut)){
+           Paciente paciente = pacientes.get(rut);
+           Paciente paciente2 = new Paciente(paciente.getNombre(),paciente.getApellido(),paciente.getRut(),gravedad,paciente.getFecha());
+           return paciente2;
+        }
+        return null;
     }
 }
