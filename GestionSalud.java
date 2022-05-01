@@ -12,6 +12,7 @@ public class GestionSalud {
         //Instanciar variables
         BufferedReader lectura = new BufferedReader (new InputStreamReader(System.in));
         ArrayList<Sala> salas = new ArrayList();
+        Reporte reporte;
         for (int i = 0; i < 3; i++){
             Sala sala = new Sala();
             salas.add(sala);
@@ -72,7 +73,7 @@ public class GestionSalud {
                 
                 
                 case 6:
-                    System.out.println("Ingrese el rut del paciente:");
+                    System.out.println("Ingrese el RUT del paciente:");
                     String rut = lectura.readLine();
                     System.out.println("Ingrese la nueva gravedad del paciente:");
                     int gravedad = Integer.parseInt(lectura.readLine());
@@ -96,6 +97,12 @@ public class GestionSalud {
                     }
                 break;
                 
+                case 7:
+                    
+                    reporte = new Reporte();
+                    reporte.escribirReporte(salas, lectura);
+                break;
+                
                 case 0: salir();
                 break;
                 default: System.out.println("Opción inválida. Intente nuevamente.");
@@ -109,11 +116,12 @@ public class GestionSalud {
         System.out.println();     
         System.out.println("Elija una opción:");
         System.out.println("1) Leer paciente");
-        System.out.println("2) Dar de alta a paciente                   [WIP]");
+        System.out.println("2) Dar de alta a paciente");
         System.out.println("3) Ver estado de gravedad de paciente       [WIP]");
         System.out.println("4) Mostrar todos los pacientes");
         System.out.println("5) Mostrar todas las salas");
         System.out.println("6) Modificar estado de gravedad paciente");
+        System.out.println("7) Generar reporte");
         System.out.println("0) Salir");
     }
     

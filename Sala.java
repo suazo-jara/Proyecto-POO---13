@@ -56,6 +56,28 @@ public class Sala {
         } 
     }
     
+    public void reportarPacientes(FileWriter escritor) throws IOException{
+        for(Map.Entry<String,Paciente> recorrer : pacientes.entrySet()){
+            Paciente pivot = recorrer.getValue();
+            
+            escritor.write("Nombre: " + pivot.getNombre()+"\n");
+            escritor.write("Apellido: " + pivot.getApellido()+"\n");
+            escritor.write("RUT: " + pivot.getRut()+"\n");
+            escritor.write("Fecha de ingreso: " + pivot.getFecha()+"\n");
+            escritor.write("Gravedad: " + pivot.getGravedad());
+            if(pivot.getGravedad() == 1){
+                escritor.write(" (Leve)"+"\n");
+            }
+            if(pivot.getGravedad() == 2){
+                escritor.write(" (Mediana)"+"\n");
+            }
+            if(pivot.getGravedad() == 3){
+                escritor.write(" (Grave)"+"\n");
+            }
+            escritor.write("-----------------------------"+"\n");
+        } 
+    }
+    
     public Paciente eliminarPaciente(String clave){
     Paciente pp;
     pp = null;
