@@ -14,7 +14,7 @@ public class GestionSalud {
         ArrayList<Sala> salas = new ArrayList();
         Reporte reporte;
         for (int i = 0; i < 3; i++){
-            Sala sala = new Sala();
+            Sala sala = new Sala(i+1);
             salas.add(sala);
         }
         Paciente paciente = new Paciente();
@@ -52,10 +52,21 @@ public class GestionSalud {
                     }
                 }
                 break;
-                /*case 3: estadoDeGravedad();
+                case 3:{
+                    System.out.println("Ingrese el numero de la Sala que desea eliminar:");
+                    int code = Integer.parseInt(lectura.readLine());
+                    Sala ss = eliminarSala(code,salas);
+                    if(ss!=null){
+                        System.out.println("La sala se a eliminado correctamente");
+                    }else{
+                        System.out.println("El numero de sala ingresado no existe, intente nuevamente");
+                    }
+                }
+                break;
+                /*case 4: estadoDeGravedad();
                 break;
                 */
-                case 4: 
+                case 5: 
                     for (int i = 0; i < salas.size(); i++){
                         System.out.println("S A L A  " + (i + 1));
                         salas.get(i).mostrarPacientes();
@@ -64,15 +75,15 @@ public class GestionSalud {
                     }
                 break; 
                 
-                case 5:
+                case 6:
                     for (int i = 0; i < salas.size(); i++){
-                        System.out.println("S A L A  " + (i + 1));
+                        System.out.println("S A L A  " + salas.get(i).getCodigoGravedad());
                         salas.get(i).mostrarSalas();
                     }
                 break;
                 
                 
-                case 6:
+                case 7:
                     System.out.println("Ingrese el RUT del paciente:");
                     String rut = lectura.readLine();
                     System.out.println("Ingrese la nueva gravedad del paciente:");
@@ -97,7 +108,7 @@ public class GestionSalud {
                     }
                 break;
                 
-                case 7:
+                case 8:
                     
                     reporte = new Reporte();
                     reporte.escribirReporte(salas, lectura);
@@ -110,18 +121,22 @@ public class GestionSalud {
             }
         }while(1 > 0);
         }
-    
+    public static Sala eliminarSala(int codigo,ArrayList<Sala> salas){
+        Sala ss = salas.remove(codigo-1);
+        return ss;
+    }
     public static void menu(){
         //Muestra menu
         System.out.println();     
         System.out.println("Elija una opción:");
         System.out.println("1) Leer paciente");
         System.out.println("2) Dar de alta a paciente");
-        System.out.println("3) Ver estado de gravedad de paciente       [WIP]");
-        System.out.println("4) Mostrar todos los pacientes");
-        System.out.println("5) Mostrar todas las salas");
-        System.out.println("6) Modificar estado de gravedad paciente");
-        System.out.println("7) Generar reporte");
+        System.out.println("3) Eliminar Sala");
+        System.out.println("4) Ver estado de gravedad de paciente       [WIP]");
+        System.out.println("5) Mostrar todos los pacientes");
+        System.out.println("6) Mostrar todas las salas");
+        System.out.println("7) Modificar estado de gravedad paciente");
+        System.out.println("8) Generar reporte");
         System.out.println("0) Salir");
     }
     
