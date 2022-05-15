@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="main.java.com.mycompany.proyectopoo">
+  <ClassDiagramComponents>
+    <Class name="GestionSalud" package="" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="eliminarSala" returnType="Sala" visibility="public" isStatic="true">
+          <Argument type="int" name="codigo"/>
+          <Argument type="ArrayList&lt;Sala&gt;" name="salas"/>
+        </Method>
+        <Method name="menu" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="salir" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="leerPaciente" returnType="void" visibility="public" isStatic="true">
+          <Argument type="BufferedReader" name="lectura"/>
+          <Argument type="Paciente" name="paciente"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Paciente" package="" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="apellido" type="String" visibility="private"/>
+        <Field name="rut" type="String" visibility="private"/>
+        <Field name="gravedad" type="int" visibility="private"/>
+        <Field name="fecha" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="apellido"/>
+          <Argument type="String" name="rut"/>
+          <Argument type="int" name="gravedad"/>
+          <Argument type="String" name="fecha"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="getRut" returnType="String" visibility="public"/>
+        <Method name="getGravedad" returnType="int" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="setRut" returnType="void" visibility="public">
+          <Argument type="String" name="rut"/>
+        </Method>
+        <Method name="setGravedad" returnType="void" visibility="public">
+          <Argument type="int" name="gravedad"/>
+        </Method>
+        <Method name="getFecha" returnType="String" visibility="public"/>
+        <Method name="setFecha" returnType="void" visibility="public">
+          <Argument type="String" name="fecha"/>
+        </Method>
+        <Method name="getApellido" returnType="String" visibility="public"/>
+        <Method name="setApellido" returnType="void" visibility="public">
+          <Argument type="String" name="apellido"/>
+        </Method>
+        <Method name="leerDatos" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="apellido"/>
+          <Argument type="String" name="rut"/>
+        </Method>
+        <Method name="leerDatos" returnType="void" visibility="public">
+          <Argument type="int" name="gravedad"/>
+          <Argument type="String" name="fecha"/>
+        </Method>
+        <Method name="entrySet" returnType="Iterable&lt;Map.Entry&lt;String, Paciente&gt;&gt;" visibility="package"/>
+      </Methods>
+    </Class>
+    <Class name="Reporte" package="" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="archivo" type="File" visibility="private"/>
+        <Field name="escritor" type="FileWriter" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="escribirReporte" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Sala&gt;" name="salas"/>
+          <Argument type="BufferedReader" name="lector"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Sala" package="" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="pacientes" type="HashMap&lt;String, Paciente&gt;" visibility="private"/>
+        <Field name="codigoGravedad" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="gravedad"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getCodigoGravedad" returnType="int" visibility="public"/>
+        <Method name="setCodigoGravedad" returnType="void" visibility="public">
+          <Argument type="int" name="codigoGravedad"/>
+        </Method>
+        <Method name="setCodigoGravedad" returnType="void" visibility="public">
+          <Argument type="short" name="codigoGravedad"/>
+        </Method>
+        <Method name="agregarPaciente" returnType="void" visibility="public">
+          <Argument type="Paciente" name="paciente"/>
+        </Method>
+        <Method name="mostrarPacientes" returnType="void" visibility="public"/>
+        <Method name="reportarPacientes" returnType="void" visibility="public">
+          <Argument type="FileWriter" name="escritor"/>
+        </Method>
+        <Method name="eliminarPaciente" returnType="Paciente" visibility="public">
+          <Argument type="String" name="clave"/>
+        </Method>
+        <Method name="mostrarSalas" returnType="void" visibility="public"/>
+        <Method name="buscarPaciente" returnType="Paciente" visibility="public">
+          <Argument type="String" name="rut"/>
+          <Argument type="int" name="gravedad"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="GestionSalud" target="Paciente" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="pacientes" source="Sala" target="Paciente" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashMap&lt;String, Paciente&gt;"/>
+    <UseRelation source="Paciente" target="Paciente" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="GestionSalud" target="Sala" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Reporte" target="Sala" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Sala" target="Paciente" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
