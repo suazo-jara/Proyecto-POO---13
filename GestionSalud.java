@@ -3,6 +3,7 @@
  * @author José Olguín Bustamante
  * @author Cristian Suazo Jara
  */
+package com.mycompany.proyectopoo;
 import java.io.*;
 import java.util.*;
 
@@ -13,11 +14,8 @@ public class GestionSalud {
         BufferedReader lectura = new BufferedReader (new InputStreamReader(System.in));
         ArrayList<Sala> salas = new ArrayList();
         Reporte reporte;
-        for (int i = 0; i < 3; i++){
-            Sala sala = new Sala(i+1);
-            salas.add(sala);
-        }
-        Paciente paciente = new Paciente();
+        crearSalas(salas);
+        Paciente paciente = new Paciente(null,null,null,0,0,null);
         
         //Ciclo para mostrar menu con sus opciones
         do{
@@ -137,6 +135,7 @@ public class GestionSalud {
         System.out.println("6) Mostrar todas las salas");
         System.out.println("7) Modificar estado de gravedad paciente");
         System.out.println("8) Generar reporte");
+        System.out.println("9) Mostrar pacientes menores de edad");
         System.out.println("0) Salir");
     }
     
@@ -147,8 +146,17 @@ public class GestionSalud {
             
     }
     
+    public static void crearSalas(ArrayList salas){
+       
+        for (int i = 0; i < 3; i++){
+            Sala sala = new Sala(i+1);
+            salas.add(sala);
+        }
+        
+    }
+    
     public static void leerPaciente(BufferedReader lectura, Paciente paciente) throws IOException{
-        int gravedad;
+        int gravedad, anioNacimiento;
         String nombre, apellido, rut, fecha;
         
         System.out.println("Ingrese nombre del paciente:");
@@ -159,7 +167,8 @@ public class GestionSalud {
         
         System.out.println("Ingrese RUT del paciente:");
         rut = lectura.readLine();
-        
+        System.out.println("Ingrese el año de nacimiento del paciente:");
+        anioNacimiento = Integer.parseInt(lectura.readLine());
         System.out.println("Ingrese la gravedad del paciente:");
         System.out.println("1)Leve    2)Mediana    3)Grave");
         gravedad = Integer.parseInt(lectura.readLine());
@@ -167,7 +176,7 @@ public class GestionSalud {
         System.out.println("Ingrese la fecha de ingreso (formato DD-MM-AA):");
         fecha = lectura.readLine();
         
-        paciente.leerDatos(nombre, apellido, rut);
+        paciente.leerDatos(nombre, apellido, rut, anioNacimiento);
         paciente.leerDatos(gravedad, fecha);
     }
     

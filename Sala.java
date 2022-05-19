@@ -1,3 +1,4 @@
+package com.mycompany.proyectopoo;
 import java.io.*;
 import java.util.*;
 
@@ -96,7 +97,7 @@ public class Sala {
     public Paciente buscarPaciente(String rut, int gravedad){
         if(pacientes.containsKey(rut)){
            Paciente paciente = pacientes.get(rut);
-           Paciente paciente2 = new Paciente(paciente.getNombre(),paciente.getApellido(),paciente.getRut(),gravedad,paciente.getFecha());
+           Paciente paciente2 = new Paciente(paciente.getNombre(),paciente.getApellido(),paciente.getRut(),paciente.getAnioNacimiento(),gravedad,paciente.getFecha());
            return paciente2;
         }
         return null;
