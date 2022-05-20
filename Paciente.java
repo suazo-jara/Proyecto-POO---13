@@ -2,7 +2,7 @@ package com.mycompany.proyectopoo;
 import java.io.*;
 import java.util.Map;
 
-public class Paciente extends Persona{
+public class Paciente extends Persona implements Edad{
     private String nombre;
     private String apellido;
     private String rut;
@@ -46,7 +46,7 @@ public class Paciente extends Persona{
     
     @Override
     public int calcularEdad(){
-        int edad = 2022 - anioNacimiento;
+        int edad = ANIO_ACTUAL - anioNacimiento;
         return edad;
     }
     

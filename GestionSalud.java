@@ -111,6 +111,13 @@ public class GestionSalud {
                     reporte = new Reporte();
                     reporte.escribirReporte(salas, lectura);
                 break;
+                case 9:
+                       for (int i = 0; i < salas.size(); i++){
+                        System.out.println("S A L A  " + (i + 1));
+                        salas.get(i).menoresDeEdad();
+                        System.out.println("");
+                       }
+                break;   
                 
                 case 0: salir();
                 break;

@@ -42,6 +42,7 @@ public class Sala {
             System.out.println("Nombre: " + pivot.getNombre());
             System.out.println("Apellido: " + pivot.getApellido());
             System.out.println("RUT: " + pivot.getRut());
+            System.out.println("Año de nacimiento: " + pivot.getAnioNacimiento()+"\n");
             System.out.println("Fecha de ingreso: " + pivot.getFecha());
             System.out.print("Gravedad: " + pivot.getGravedad());
             if(pivot.getGravedad() == 1){
@@ -64,6 +65,7 @@ public class Sala {
             escritor.write("Nombre: " + pivot.getNombre()+"\n");
             escritor.write("Apellido: " + pivot.getApellido()+"\n");
             escritor.write("RUT: " + pivot.getRut()+"\n");
+            escritor.write("Año de nacimiento: " + pivot.getAnioNacimiento()+"\n");
             escritor.write("Fecha de ingreso: " + pivot.getFecha()+"\n");
             escritor.write("Gravedad: " + pivot.getGravedad());
             if(pivot.getGravedad() == 1){
@@ -88,7 +90,34 @@ public class Sala {
         }
         return pp;
     }
+    public void menoresDeEdad(){
     
+        for(Map.Entry<String,Paciente> recorrer : pacientes.entrySet()){
+            Paciente pivot = recorrer.getValue();
+            if(pivot.esMenor()){
+                System.out.println("Nombre: " + pivot.getNombre());
+                System.out.println("Apellido: " + pivot.getApellido());
+                System.out.println("RUT: " + pivot.getRut());
+                System.out.println("Edad: " + pivot.calcularEdad());
+                System.out.println("Año de nacimiento: " + pivot.getAnioNacimiento()+"\n");
+                System.out.println("Fecha de ingreso: " + pivot.getFecha());
+                System.out.print("Gravedad: " + pivot.getGravedad());
+                if(pivot.getGravedad() == 1){
+                    System.out.println("(Leve)");
+                }
+                if(pivot.getGravedad() == 2){
+                    System.out.println("(Mediana)");
+                }
+                if(pivot.getGravedad() == 3){
+                    System.out.println("(Grave)");
+                }
+                
+                System.out.println("-----------------------------"); 
+            }
+            
+        }     
+        
+    }
     public void mostrarSalas(){
         System.out.println("Cantidad de pacientes: " + pacientes.size());
         System.out.println("-----------------------------");

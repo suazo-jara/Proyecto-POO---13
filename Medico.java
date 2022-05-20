@@ -2,7 +2,7 @@
 package com.mycompany.proyectopoo;
 
 
-public class Medico extends Persona {
+public class Medico extends Persona implements Edad {
     private String nombre;
     private String apellido;
     private String rut;
@@ -35,7 +35,7 @@ public class Medico extends Persona {
     
     @Override
     public int calcularEdad(){
-        int edad = 2022 - anioNacimiento;
+        int edad = ANIO_ACTUAL - anioNacimiento;
         return edad;
     }
     
