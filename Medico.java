@@ -1,7 +1,3 @@
-
-package com.mycompany.proyectopoo;
-
-
 public class Medico extends Persona implements Edad {
     private String nombre;
     private String apellido;
@@ -19,18 +15,14 @@ public class Medico extends Persona implements Edad {
         this.fecha = fecha;
     }
 
-        @Override
+    @Override
     public boolean esMenor(){
-      
         return calcularEdad()<18;
-      
     }
     
     @Override
     public boolean esAdultoMayor(){
-       
         return calcularEdad()>=60;
-        
     }
     
     @Override

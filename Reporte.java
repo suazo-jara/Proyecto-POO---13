@@ -1,11 +1,5 @@
-package com.mycompany.proyectopoo;
 import java.util.*;
 import java.io.*;
-
-/**
- *
- * @author Cristian Suazo Jara
- */
 
 public class Reporte {
     private File archivo;

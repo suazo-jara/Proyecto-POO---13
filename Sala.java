@@ -1,4 +1,3 @@
-package com.mycompany.proyectopoo;
 import java.io.*;
 import java.util.*;
 
@@ -116,9 +115,7 @@ public class Sala {
                 
                 System.out.println("-----------------------------"); 
             }
-            
         }     
-        
     }
     public void mostrarSalas(){
         System.out.println("Cantidad de pacientes: " + pacientes.size());

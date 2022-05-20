@@ -1,4 +1,3 @@
-package com.mycompany.proyectopoo;
 import java.io.*;
 import java.util.Map;
 
@@ -27,21 +26,13 @@ public class Paciente extends Persona implements Edad{
     @Override
     public boolean esMenor(){
       
-      if(calcularEdad()<18){
-         return true; 
-      }else{
-         return false;
-      }
+        return calcularEdad()<18;
       
     }
     
     @Override
     public boolean esAdultoMayor(){
-       if(calcularEdad()>=60){
-         return true; 
-      }else{
-         return false;
-      }
+        return calcularEdad()>=60;
     }
     
     @Override
@@ -123,6 +114,4 @@ public class Paciente extends Persona implements Edad{
     Iterable<Map.Entry<String, Paciente>> entrySet() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
 }
