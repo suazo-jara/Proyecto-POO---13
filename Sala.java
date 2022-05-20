@@ -91,10 +91,12 @@ public class Sala {
         return pp;
     }
     public void menoresDeEdad(){
-    
+        
         for(Map.Entry<String,Paciente> recorrer : pacientes.entrySet()){
             Paciente pivot = recorrer.getValue();
+            //Verifica si es menor de edad
             if(pivot.esMenor()){
+                //Muestra datos de la persona
                 System.out.println("Nombre: " + pivot.getNombre());
                 System.out.println("Apellido: " + pivot.getApellido());
                 System.out.println("RUT: " + pivot.getRut());
@@ -121,6 +123,74 @@ public class Sala {
     public void mostrarSalas(){
         System.out.println("Cantidad de pacientes: " + pacientes.size());
         System.out.println("-----------------------------");
+    }
+    
+    public void menorDeEdad(){
+        int edad = 100000;
+        Paciente copia = new Paciente();
+        for(Map.Entry<String,Paciente> recorrer : pacientes.entrySet()){
+            Paciente pivot = recorrer.getValue();
+            //Verifica si la edad es mayor a la persona
+            if (pivot.calcularEdad() < edad){
+                //Actualiza edad y cambia a persona mas joven
+                edad = pivot.calcularEdad();
+                copia = pivot;
+            }
+        } 
+        //Si no hay personas muestra el mensaje
+        if(copia.getNombre() == null){
+            System.out.println("No se encuentran pacientes registrados");
+        }else{
+            //Muestra datos de persona mas joven
+            System.out.println("Nombre: " + copia.getNombre());
+            System.out.println("Apellido: " + copia.getApellido());
+            System.out.println("RUT: " + copia.getRut());
+            System.out.println("Edad: " + copia.calcularEdad());
+            System.out.println("Fecha de ingreso: " + copia.getFecha());
+                System.out.print("Gravedad: " + copia.getGravedad());
+                if(copia.getGravedad() == 1){
+                    System.out.println("(Leve)");
+                }
+                if(copia.getGravedad() == 2){
+                    System.out.println("(Mediana)");
+                }
+                if(copia.getGravedad() == 3){
+                    System.out.println("(Grave)");
+                }
+        }
+    }
+    
+    public void mayorDeEdad(){
+        int edad = 0;
+        Paciente copia = new Paciente();
+        for(Map.Entry<String,Paciente> recorrer : pacientes.entrySet()){
+            Paciente pivot = recorrer.getValue();
+            //Verifica si edad es menor a la persona
+            if (pivot.calcularEdad() > edad){
+                edad = pivot.calcularEdad();
+                copia = pivot;
+            }
+        } 
+        //Si no hay personas muestra el mensaje
+        if(copia.getNombre() == null){
+            System.out.println("No se encuentran pacientes registrados");
+        }else{
+            System.out.println("Nombre: " + copia.getNombre());
+            System.out.println("Apellido: " + copia.getApellido());
+            System.out.println("RUT: " + copia.getRut());
+            System.out.println("Edad: " + copia.calcularEdad());
+            System.out.println("Fecha de ingreso: " + copia.getFecha());
+                System.out.print("Gravedad: " + copia.getGravedad());
+                if(copia.getGravedad() == 1){
+                    System.out.println("(Leve)");
+                }
+                if(copia.getGravedad() == 2){
+                    System.out.println("(Mediana)");
+                }
+                if(copia.getGravedad() == 3){
+                    System.out.println("(Grave)");
+                }
+        }
     }
     
     public Paciente buscarPaciente(String rut, int gravedad){

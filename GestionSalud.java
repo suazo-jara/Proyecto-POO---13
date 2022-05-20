@@ -112,13 +112,33 @@ public class GestionSalud {
                     reporte.escribirReporte(salas, lectura);
                 break;
                 case 9:
+                       //Recorre las salas y muestra a todos los menores de edad
                        for (int i = 0; i < salas.size(); i++){
                         System.out.println("S A L A  " + (i + 1));
                         salas.get(i).menoresDeEdad();
                         System.out.println("");
                        }
-                break;   
-                
+                break;  
+                case 10:
+                    System.out.println("1)Paciente mas joven");
+                    System.out.println("2)Paciente mas longevo");
+                    int numero = Integer.parseInt(lectura.readLine());
+                    //Recorre las salas y muestra los mas jovenes por cada una
+                    if(numero == 1){
+                        for (int i = 0; i < salas.size(); i++){
+                        System.out.println("S A L A  " + (i + 1));
+                        salas.get(i).menorDeEdad();
+                        System.out.println("");
+                       }
+                    }else{
+                        //Recorre las salas y muestra los mas longevos por cada una
+                        for (int i = 0; i < salas.size(); i++){   
+                        System.out.println("S A L A  " + (i + 1));
+                        salas.get(i).mayorDeEdad();
+                        System.out.println("");
+                       }
+                    }
+                break;
                 case 0: salir();
                 break;
                 default: System.out.println("Opción inválida. Intente nuevamente.");
@@ -143,6 +163,7 @@ public class GestionSalud {
         System.out.println("7) Modificar estado de gravedad paciente");
         System.out.println("8) Generar reporte");
         System.out.println("9) Mostrar pacientes menores de edad");
+        System.out.println("10)Mostrar paciente por sala");
         System.out.println("0) Salir");
     }
     
@@ -165,7 +186,7 @@ public class GestionSalud {
     public static void leerPaciente(BufferedReader lectura, Paciente paciente) throws IOException{
         int gravedad, anioNacimiento;
         String nombre, apellido, rut, fecha;
-        
+        //Leer datos de paciente
         System.out.println("Ingrese nombre del paciente:");
         nombre = lectura.readLine();
         
@@ -182,7 +203,7 @@ public class GestionSalud {
         
         System.out.println("Ingrese la fecha de ingreso (formato DD-MM-AA):");
         fecha = lectura.readLine();
-        
+        //Mandar datos a paciente para guardarlos
         paciente.leerDatos(nombre, apellido, rut, anioNacimiento);
         paciente.leerDatos(gravedad, fecha);
     }
