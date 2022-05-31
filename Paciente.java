@@ -1,3 +1,5 @@
+package com.mycompany.proyectopoo;
+
 import java.io.*;
 import java.util.Map;
 
@@ -39,6 +41,11 @@ public class Paciente extends Persona implements Edad{
     public int calcularEdad(){
         int edad = ANIO_ACTUAL - anioNacimiento;
         return edad;
+    }
+    
+    @Override
+    public void mostrarEdad(){
+        System.out.println(calcularEdad());
     }
     
     public int getGravedad() {
