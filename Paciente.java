@@ -24,6 +24,26 @@ public class Paciente extends Persona implements Edad{
         this.fecha = fecha;
     }
     
+    public void mostrarPaciente(){
+        
+        System.out.println("Nombre: " + getNombre());
+        System.out.println("Apellido: " + getApellido());
+        System.out.println("RUT: " + getRut());
+        System.out.println("Edad: " + calcularEdad());
+        System.out.println("Fecha de ingreso: " + getFecha());
+        System.out.print("Gravedad: " + getGravedad());
+            
+        if(getGravedad() == 1){
+            System.out.println("(Leve)");
+        }
+        if(getGravedad() == 2){
+            System.out.println("(Mediana)");
+        }
+        if(getGravedad() == 3){
+            System.out.println("(Grave)");
+        }
+            
+    }
     
     @Override
     public boolean esMenor(){
