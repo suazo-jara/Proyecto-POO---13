@@ -127,7 +127,7 @@ public class Sala {
         if(copia.getNombre() == null){
             System.out.println("No se encuentran pacientes registrados");
         }else{
-            //Muestra datos de persona mas joven
+            //Muestra datos de persona mas mayor
             copia.mostrarPaciente();
         }
     }
