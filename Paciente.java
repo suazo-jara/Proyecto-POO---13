@@ -1,5 +1,3 @@
-package com.mycompany.proyectopoo;
-
 import java.io.*;
 import java.util.Map;
 
@@ -24,24 +22,26 @@ public class Paciente extends Persona implements Edad{
         this.fecha = fecha;
     }
     
-    public void mostrarPaciente(){
+    //Retorna String con datos pacientes;
+    public String mostrarPaciente(){
         
-        System.out.println("Nombre: " + getNombre());
-        System.out.println("Apellido: " + getApellido());
-        System.out.println("RUT: " + getRut());
-        System.out.println("Edad: " + calcularEdad());
-        System.out.println("Fecha de ingreso: " + getFecha());
-        System.out.print("Gravedad: " + getGravedad());
-            
+        String texto;
+        texto = "Nombre:" + getNombre();
+        texto+= "\nApellido: " + getApellido();
+        texto+= "\nRUT: " + getRut();
+        texto+= "\nEdad: " + calcularEdad();
+        texto+= "\nFecha de ingreso: " + getFecha();
+        texto+= "\nGravedad: " + getGravedad();
         if(getGravedad() == 1){
-            System.out.println("(Leve)");
+            texto+= "\n(Leve)";
         }
         if(getGravedad() == 2){
-            System.out.println("(Mediana)");
+            texto+= "\n(Mediana)";
         }
         if(getGravedad() == 3){
-            System.out.println("(Grave)");
+            texto+= "\n(Grave)";
         }
+        return texto;
             
     }
     

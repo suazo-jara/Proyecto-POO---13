@@ -1,4 +1,3 @@
-package com.mycompany.proyectopoo;
 
 public abstract class Persona {
     private int edad;

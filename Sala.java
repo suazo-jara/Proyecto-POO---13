@@ -1,5 +1,3 @@
-package com.mycompany.proyectopoo;
-
 import java.io.*;
 import java.util.*;
 
@@ -32,12 +30,13 @@ public class Sala {
         //System.out.println("------clave  " + pacientes.get(clave).getNombre());
     }
     
-    public void mostrarPacientes(){
+    public String mostrarPacientes(){
+        String texto = "";
         for(Map.Entry<String,Paciente> recorrer : pacientes.entrySet()){
             Paciente pivot = recorrer.getValue();
-            pivot.mostrarPaciente();      
-            System.out.println("-----------------------------");
+            texto+= pivot.mostrarPaciente()+ "\n-------------------------------\n";
         } 
+        return texto;
     }
     
     public void reportarPacientes(FileWriter escritor) throws IOException{
@@ -73,16 +72,16 @@ public class Sala {
         return pp;
     }
     public void menoresDeEdad(){
-        
+        String cadena;
         for(Map.Entry<String,Paciente> recorrer : pacientes.entrySet()){
             Paciente pivot = recorrer.getValue();
             //Verifica si es menor de edad
             if(pivot.esMenor()){
                 //Muestra datos de la persona
                 
-                pivot.mostrarPaciente();
+                cadena = pivot.mostrarPaciente();
                 
-                System.out.println("-----------------------------"); 
+                System.out.println(cadena + "\n-----------------------------"); 
             }
         }     
     }
@@ -107,8 +106,10 @@ public class Sala {
         if(copia.getNombre() == null){
             System.out.println("No se encuentran pacientes registrados");
         }else{
+            String cadena;
             //Muestra datos de persona mas joven
-            copia.mostrarPaciente();
+            cadena = copia.mostrarPaciente();
+            System.out.println(cadena);
         }
     }
     
@@ -127,8 +128,10 @@ public class Sala {
         if(copia.getNombre() == null){
             System.out.println("No se encuentran pacientes registrados");
         }else{
+            String cadena;
             //Muestra datos de persona mas mayor
-            copia.mostrarPaciente();
+            cadena = copia.mostrarPaciente();
+            System.out.println(cadena);
         }
     }
     

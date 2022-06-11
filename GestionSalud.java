@@ -8,7 +8,17 @@ import java.util.*;
 
 public class GestionSalud {
     
+    
     public static void main(String[] args) throws IOException{
+        
+        //Ventana
+        VentanaMenu menu = new VentanaMenu();
+        menu.setVisible(true);
+        menu.setResizable(false);
+        menu.setLocationRelativeTo(null);
+        
+        
+        //Terminal
         //Instanciar variables
         BufferedReader lectura = new BufferedReader (new InputStreamReader(System.in));
         ArrayList<Sala> salas = new ArrayList();
@@ -16,6 +26,7 @@ public class GestionSalud {
         crearSalas(salas);
         Paciente paciente = new Paciente(null,null,null,0,0,null);
         
+   
         //Ciclo para mostrar menu con sus opciones
         do{
             //Muestra menu hasta que ingrese una opcion valida
@@ -29,6 +40,7 @@ public class GestionSalud {
                     salas.get(paciente.getGravedad() - 1).agregarPaciente(paciente);
                     //Prepara variable para el próximo paciente a ingresar
                     paciente = new Paciente();
+                    
                 }
                 break;
                 // 2: Dar de alta a un paciente por RUT
@@ -49,6 +61,7 @@ public class GestionSalud {
                         System.out.println("rut de paciente ingresado no existe en la base de datos");
                     }
                 }
+        
                 break;
                 case 3:{
                     System.out.println("Ingrese el numero de la Sala que desea eliminar:");
@@ -62,16 +75,19 @@ public class GestionSalud {
                 }
                 break;
                 
-                /*case 4: estadoDeGravedad();
+                /*
+                case 4: 
+                    estadoDeGravedad();
                 break;
-                */
                 
-                // 5: Mostrar pacientes en todas las salas
+                */
+                //5: Mostrar pacientes en todas las salas
                 case 5: 
+                    String cadena ="";
                     for (int i = 0; i < salas.size(); i++){
                         System.out.println("S A L A  " + (i + 1));
-                        salas.get(i).mostrarPacientes();
-                        System.out.println("");
+                        cadena = salas.get(i).mostrarPacientes();
+                        System.out.println(cadena);
                         
                     }
                 break; 
@@ -150,12 +166,16 @@ public class GestionSalud {
                 break;
             }
         }while(1 > 0);
+
+
+
         }
     public static Sala eliminarSala(int codigo,ArrayList<Sala> salas){
         Sala ss = salas.remove(codigo-1);
         return ss;
     }
     public static void menu(){
+        
         //Muestra menu
         System.out.println();     
         System.out.println("Elija una opción:");
@@ -213,4 +233,5 @@ public class GestionSalud {
         paciente.leerDatos(nombre, apellido, rut, anioNacimiento);
         paciente.leerDatos(gravedad, fecha);
     }
+    
 }
