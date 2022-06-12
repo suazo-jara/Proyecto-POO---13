@@ -1,3 +1,5 @@
+
+
 public class Medico extends Persona implements Edad {
     private String nombre;
     private String apellido;
@@ -29,6 +31,11 @@ public class Medico extends Persona implements Edad {
     public int calcularEdad(){
         int edad = ANIO_ACTUAL - anioNacimiento;
         return edad;
+    }
+    
+    @Override
+    public void mostrarEdad(){
+        System.out.println(calcularEdad());
     }
     
     public String getNombre() {
