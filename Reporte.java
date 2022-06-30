@@ -20,14 +20,10 @@ public class Reporte {
                 escritor.close();
                 System.out.println("Reporte exitosamente generado en el archivo "+ archivo.getName());
             }else{
-            System.out.println("El archivo ya existe.");
-            System.out.println("El reporte no fue generado.");
+            throw new ArchivoExistenteException();
             }
             
-        }catch(IOException e){
-            System.out.println("Ocurrió un error.");
-            System.out.println("El reporte no fue generado.");
-            e.printStackTrace(System.out);
+        }catch(ErrorGenericoException e){
         }
     }
 }
