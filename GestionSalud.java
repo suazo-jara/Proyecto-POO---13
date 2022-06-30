@@ -1,3 +1,5 @@
+
+
 /*
  * @author Kevin Meza Toro
  * @author José Olguín Bustamante
@@ -25,7 +27,7 @@ public class GestionSalud {
         Reporte reporte;
         crearSalas(salas);
         Paciente paciente = new Paciente(null,null,null,0,0,null);
-        
+        paciente.mostrarEdad();
    
         //Ciclo para mostrar menu con sus opciones
         do{
@@ -217,8 +219,16 @@ public class GestionSalud {
         System.out.println("Ingrese apellido del paciente:");
         apellido = lectura.readLine();
         
-        System.out.println("Ingrese RUT del paciente:");
+        System.out.println("Ingrese RUT del paciente sin puntos y con guion:");
         rut = lectura.readLine();
+        
+        if(!paciente.verificar(rut)){
+            do{
+               System.out.println("Rut en formato invalido, intente nuevamente");
+               System.out.println("Ingrese RUT del paciente sin puntos y con guion:");
+               rut = lectura.readLine();
+            }while(!paciente.verificar(rut));
+        }
         
         System.out.println("Ingrese el año de nacimiento del paciente:");
         anioNacimiento = Integer.parseInt(lectura.readLine());
@@ -227,8 +237,17 @@ public class GestionSalud {
         System.out.println("1)Leve    2)Mediana    3)Grave");
         gravedad = Integer.parseInt(lectura.readLine());
         
-        System.out.println("Ingrese la fecha de ingreso (formato DD-MM-AA):");
+        System.out.println("Ingrese la fecha de ingreso (formato DD-MM-AAAA):");
         fecha = lectura.readLine();
+        
+        if(!paciente.esFecha(fecha)){
+            do{
+               System.out.println("Fecha en formato invalido, intente nuevamente");
+               System.out.println("Ingrese la fecha de ingreso (formato DD-MM-AAAA):");
+               fecha = lectura.readLine();
+            }while(!paciente.esFecha(fecha));
+        }
+        
         //Mandar datos a paciente para guardarlos
         paciente.leerDatos(nombre, apellido, rut, anioNacimiento);
         paciente.leerDatos(gravedad, fecha);

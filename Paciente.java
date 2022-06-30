@@ -1,7 +1,10 @@
+
+
 import java.io.*;
 import java.util.Map;
+import java.util.regex.Matcher;
 
-public class Paciente extends Persona implements Edad{
+public class Paciente extends Persona implements Edad, FormatoRut,FormatoFecha{
     private String nombre;
     private String apellido;
     private String rut;
@@ -123,7 +126,23 @@ public class Paciente extends Persona implements Edad{
         this.fecha = fecha;
     }
     
+    @Override
+    public boolean verificar(String Rut){
+        Matcher mat = PATRON_RUT.matcher(Rut);
+        if (!mat.matches()) {
+              return false;
+        }
+       return true; 
+    }
     
+    @Override
+    public boolean esFecha(String Fecha){
+        Matcher mat = PATRON_FECHA.matcher(Fecha);
+        if (!mat.matches()) {
+              return false;
+        }
+       return true;
+    }
     //Sobrecarga para el metodo de leerDatos
     //Ingresa el nombre, apellido y RUT del paciente
     public void leerDatos(String nombre, String apellido, String rut, int anioNacimiento){
